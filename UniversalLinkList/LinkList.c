@@ -1,7 +1,8 @@
 
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "LinkList.h"
 
 
@@ -49,21 +50,48 @@ int InsertListNodeOfPosi(LinkList* plinklist,const unsigned int posi,ListNode* p
 	return 1;
 }
 
-int GetListNodeOfPosi(LinkList* plinklist,const unsigned int posi)//获取指定位置的ListNode
+ListNode* GetListNodeOfPosi(LinkList* plinklist,const unsigned int posi)//获取指定位置的ListNode
 {
-		//待实现
-		return 1;
+	   ListNode* p_tmp =NULL;
+	  unsigned int ui_sign=0;
+	  //此处不能写posi>=-1 因为posi是无符号类型
+	  if(posi>=0 && posi<plinklist->Count)
+	  {
+		p_tmp =  plinklist->HeadNode;
+	   while (ui_sign < posi)
+	   {
+		   if(p_tmp->NextNode ==NULL)
+		   {
+			   return NULL;
+		   }
+		   p_tmp =p_tmp->NextNode;
+		   ui_sign++;
+	   }
+
+	  }
+	  
+		return p_tmp;
 }
 
-int PushBack(LinkList* plinklist,ListNode* p_node)//在链表最后添加Node
+int ListPushBack(LinkList* plinklist,ListNode* p_node)//在链表最后添加Node
 {
+	if(plinklist->LastNode)//最后一个节点不等于NULL
+	{
+	plinklist->LastNode->NextNode = p_node;
+	}
+	if(!plinklist->HeadNode)//不等于空，就把此节点设置为头节点
+	{
+		plinklist->HeadNode=p_node;
+	}
+	plinklist->Count+=1;
+	plinklist ->LastNode =p_node;
 	//待实现
 	return plinklist->Count;
 }
 
-
+//数据包含链表节点 而不能包含链表节点指针
 struct Student{
-	ListNode* p_Node;
+	ListNode p_Node;
 	unsigned int Age;
 	unsigned char Name[32];
 };
@@ -77,18 +105,38 @@ int main(int argc,char* argv[])
 		但是可以用数据项包含链表（或链表指针） 但是要把链表放在数据项的首位 这样链表的指针指向下一个链表 
 		而这时候链表的地址就是这个数据项的首地址 强转一下指针类型 也就可以得到这个数据项的全部内容
 	*/
-	struct Student stu ={NULL,23,"Tom"};//第一个stu
-	
-	struct Student stu1 ={NULL,39,"Jerry"};//第2个stu
 
-	struct Student* p_stu =NULL;
-
-	LinkList* p_list = (LinkList*)calloc(sizeof(LinkList),1);
-
+	/*
 	ListNode* p_node=CreatNode();
 
 	ListNode* p_node1=CreatNode();
+	*/
+	LinkList* p_list = (LinkList*)calloc(sizeof(LinkList),1);
+	int count=0;
+	struct Student stu;
+	struct Student stu1;
+	struct Student* p_stu =NULL;
 
+	stu.Age =23;
+	strcpy((char*)stu.Name,"Tom");
+
+
+	//第2个stu
+	stu1.Age = 54;
+	strcpy((char*)stu1.Name,"Jerry");
+
+
+	ListPushBack(p_list,(ListNode*)&stu);
+    ListPushBack(p_list,(ListNode*)&stu1);
+
+	for(count=0;count<2;count++)
+	{
+		p_stu=(struct Student* )GetListNodeOfPosi(p_list,count);
+		printf("name is %s\n age is %d\n ",p_stu->Name,p_stu->Age);
+	}
+
+	/*
+	//此处为数据项包含链表节点指针 但是不好用
 	p_list->HeadNode = p_node;//设置头节点
 
 	stu.p_Node =p_node;//设置业务数据的链表节点
@@ -96,11 +144,12 @@ int main(int argc,char* argv[])
 	stu.p_Node->NextNode =p_node1;//设置上一个业务数据的链表节点的NextNode
 
 	stu1.p_Node=p_node1;//设置下一个业务数据的链表节点
+	p_node1->PrevNode =p_node;//上一个节点
+	p_stu =&stu;
+	p_stu = (struct Student*)(stu.p_Node->NextNode);//得到数据项的链表地址 一强转 即数据项的首地址  即可随意操作数据项
 
-	p_stu = (struct Student*)&(stu1.p_Node);//得到数据项的链表地址 一强转 即数据项的首地址  即可随意操作数据项
-	
-
-	printf("age is %d\n",p_stu->Age);
+	*/
+		
 
 
 }

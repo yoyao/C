@@ -32,8 +32,8 @@ unsigned int GetListCount();//获取LinkList的节点数量
 
 int InsertListNodeOfPosi(LinkList* plinklist,const unsigned int posi,ListNode* p_node);//在指定位置处插入ListNode
 
-int GetListNodeOfPosi(LinkList* plinklist,const unsigned int posi);//获取指定位置的ListNode
+ListNode* GetListNodeOfPosi(LinkList* plinklist,const unsigned int posi);//获取指定位置的ListNode
 
-int PushBack(LinkList* plinklist,ListNode* p_node);//在链表最后添加Node
+int ListPushBack(LinkList* plinklist,ListNode* p_node);//在链表最后添加Node
 
 #endif
