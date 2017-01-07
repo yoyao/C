@@ -40,7 +40,6 @@ static void image_fill (Image *image,unsigned char value)
 }
 
 
-
 /*
 image_set_pixel:
 Sets a pixel passed in signed (x, y) coordinates, where (0,0) is at
