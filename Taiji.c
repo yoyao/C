@@ -16,7 +16,6 @@ typedef struct {
 	unsigned char *data;
 } Image;
 
-
 static Image* image_new (size_t width,size_t height)
 {   
 	Image *image;
