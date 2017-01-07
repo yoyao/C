@@ -12,7 +12,6 @@ extern void printdata(int* arr,int count);
 /*
 原来的想法是 
 只要left小于中值 中值小于后值 即可循环比较
-
 */
 void Merge(int arr[], int left, int mid, int right,int count)
 {
