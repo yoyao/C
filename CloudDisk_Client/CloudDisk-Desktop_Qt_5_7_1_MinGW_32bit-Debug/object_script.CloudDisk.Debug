@@ -1,0 +1,17 @@
+INPUT(
+./debug\main.o
+./debug\logindial.o
+./debug\loginupper.o
+./debug\userinfo.o
+./debug\mainheader.o
+./debug\mainwindow.o
+./debug\common.o
+./debug\threadpool.o
+./debug\uploadparam.o
+./debug\httpresponse.o
+./debug\qrc_resource.o
+./debug\moc_logindial.o
+./debug\moc_loginupper.o
+./debug\moc_mainheader.o
+./debug\moc_mainwindow.o
+);

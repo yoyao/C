@@ -1,0 +1,17 @@
+INPUT(
+./release\main.o
+./release\logindial.o
+./release\loginupper.o
+./release\userinfo.o
+./release\mainheader.o
+./release\mainwindow.o
+./release\common.o
+./release\threadpool.o
+./release\uploadparam.o
+./release\httpresponse.o
+./release\qrc_resource.o
+./release\moc_logindial.o
+./release\moc_loginupper.o
+./release\moc_mainheader.o
+./release\moc_mainwindow.o
+);
